@@ -37,7 +37,7 @@ def chuchai(name:str ='李仕佳', dest:str ='天津', days:int = 11, reason:str
             }
         },
         "data_creator": "R-72frEzKd",
-        "is_start_workflow": False
+        "is_start_workflow": True
     }
     headers = {
         "Authorization": "Bearer Lc2zHmdtk2rglJeNXYDLlhBzlwPtVvO7"
