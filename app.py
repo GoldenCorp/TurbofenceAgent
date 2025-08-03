@@ -8,7 +8,7 @@ app = FastAPI(
     version='0.0.1'
 )
 
-app.include_router(router=userRouter, tags='用户')
-app.include_router(router=oaRouter, tags='oa')
+app.include_router(router=userRouter, tags=['用户'])
+app.include_router(router=oaRouter, tags=['oa'])
 mcp = FastApiMCP(app, name="giit", description="测试")
 mcp.mount()
