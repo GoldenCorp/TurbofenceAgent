@@ -1,12 +1,14 @@
 from fastapi import APIRouter, Depends, File, Form, Query, Request, UploadFile
-
+from vos import (
+    ChuchaiInputModel
+)
 import httpx
 # from http_exception import HTTPException
 oaRouter = APIRouter(prefix='/oa')
 
 @oaRouter.get("/chuchai", operation_id="chuchai", summary="这个工具可以根据参数发起oa出差流程")
 # def chuchai():
-def chuchai(name:str ='李仕佳', dest:str ='天津', days:int = 11, reason:str = '出差啊'):
+def chuchai(chuchaiParam:ChuchaiInputModel):
     # with httpx.Client() as client:
     #     response = client.get("https://www.baidu.com")
     #     return response.text
@@ -16,22 +18,22 @@ def chuchai(name:str ='李仕佳', dest:str ='天津', days:int = 11, reason:str
         "entry_id": "688def56379921af1bfa3d1b",
         "data": {
             "_widget_1754132314714": {
-            "data": name,
+            "data": chuchaiParam.name,
             # "data": '李仕佳',
             "visible": True
             },
             "_widget_1754132314715": {
-            "data": dest,
+            "data": chuchaiParam.dest,
             # "data": '天津',
             "visible": True
             },
             "_widget_1754132314716": {
-            "data": days,
+            "data": chuchaiParam.days,
             # "data": '11',
             "visible": True
             },
             "_widget_1754132314717": {
-            "data": reason,
+            "data": chuchaiParam.reason,
             # "data": '李仕佳',
             "visible": True
             }

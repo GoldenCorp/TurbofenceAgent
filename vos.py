@@ -14,3 +14,31 @@ class EmployeeModel(BaseModel):
     ou: Optional[str] = Field(default=None, description='所属组织')
     class Config:
         orm_mode = True
+        
+    
+class enen(BaseModel):
+    """
+    员工请求参数对应pydantic模型
+    """
+    name: Optional[str] = Field(default=None, description='enen的姓名')
+    class Config:
+        orm_mode = True
+
+class EmployeeQueryInputModel(BaseModel):
+    """
+    员工请求参数对应pydantic模型
+    """
+    name: Optional[str] = Field(default=None, description='员工的姓名')
+    class Config:
+        orm_mode = True
+        
+class ChuchaiInputModel(BaseModel):
+    """
+    员工请求参数对应pydantic模型
+    """
+    name: Optional[str] = Field(default='李仕佳', description='出差员工的姓名')
+    dest: Optional[str] = Field(default='天津', description='出差的目的地城市')
+    days: Optional[int] = Field(default=11, description='出差的天数')
+    reason: Optional[str] = Field(default='出差啊', description='出差的目的原因')
+    class Config:
+        orm_mode = True
