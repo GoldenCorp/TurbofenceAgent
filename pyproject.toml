@@ -3,12 +3,12 @@ name = "amcp"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = "==3.13.5"
+requires-python = "==3.12.11"
 dependencies = [
     "fastapi-mcp>=0.3.7",
     "httpx>=0.28.1",
     "mcp-proxy>=0.8.2",
-    "psycopg[binary,pool]>=3.2.9",
+    "psycopg[binary,pool]>=3.2.0",
     "sqlalchemy>=2.0.42",
 ]
 
