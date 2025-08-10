@@ -9,8 +9,8 @@ services:
       - "9099:9099"
     # environment:
     #   - APP_ENV=production
-    # volumes:
-    #   -./app:/app
+    volumes:
+      - /app/logs/:/opt/app/logs/
     # depends_on:
     #   - db
     networks:
