@@ -16,6 +16,23 @@ services:
     #   - db
     networks:
       - my - network
+  fastapi_mcp_https:
+    build:
+      context: .
+      dockerfile: Dockerfile_9449
+    # image: python:3.14-rc
+    # container_name: amcp
+    restart: always
+    ports:
+      - "9449:9449"
+    # environment:
+    #   - APP_ENV=production
+    volumes:
+      - /app/logs/:/opt/app/logs/
+    # depends_on:
+    #   - db
+    networks:
+      - my - network
 #   db:
 #     image: postgres:14
 #     container_name: postgres - container
