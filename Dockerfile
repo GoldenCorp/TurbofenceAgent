@@ -32,5 +32,5 @@ ENV PATH="/app/.venv/bin:$PATH"
 # CMD ["ls"]
 EXPOSE 9099
 
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "9099", "--log-config=log_conf.json", "--log-level", "trace", "--use-colors"]
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "9099", "--log-config=log_conf.json", "--log-level", "trace", "--use-colors", "--ssl-keyfile", "server.key", "--ssl-certfile", "server.crt"]
 # CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "9099", "--log-level", "trace", "--use-colors"]
