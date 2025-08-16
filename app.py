@@ -1,9 +1,12 @@
-from fastapi import FastAPI
-from fastapi_mcp import FastApiMCP
+from fastapi import FastAPI,Depends
+from fastapi_mcp import FastApiMCP, AuthConfig
 from userRouter import userRouter
 from oaRouter import oaRouter
 from starlette.staticfiles import StaticFiles
 from fastapi.openapi.docs import get_swagger_ui_html
+from fastapi.security import HTTPBearer
+# Scheme for the Authorization header
+token_auth_scheme = HTTPBearer()
 app = FastAPI(
     title='giit',
     description='接口文档',
@@ -23,5 +26,9 @@ async def custom_swagger_ui_html():
 
 app.include_router(router=userRouter, tags=['用户'])
 app.include_router(router=oaRouter, tags=['oa'])
-mcp = FastApiMCP(app, name="giit", description="测试")
+mcp = FastApiMCP(app, name="giit", description="测试",
+    auth_config=AuthConfig(
+        dependencies=[Depends(token_auth_scheme)],
+    )
+)
 mcp.mount()

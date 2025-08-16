@@ -3,12 +3,16 @@ from vos import (
     ChuchaiInputModel
 )
 import httpx
+from fastapi.security import HTTPBearer
+
+# Scheme for the Authorization header
+token_auth_scheme = HTTPBearer()
 # from http_exception import HTTPException
 oaRouter = APIRouter(prefix='/oa')
 
 @oaRouter.post("/chuchai", operation_id="chuchai", summary="这个工具可以根据参数发起oa出差流程")
 # def chuchai():
-def chuchai(chuchaiParam:ChuchaiInputModel):
+def chuchai(chuchaiParam:ChuchaiInputModel,token=Depends(token_auth_scheme)):
     # with httpx.Client() as client:
     #     response = client.get("https://www.baidu.com")
     #     return response.text
