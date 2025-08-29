@@ -1,4 +1,4 @@
-FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim
+FROM ghcr.io/astral-sh/uv:debian
 # FROM python:3.14-rc
 WORKDIR /app
 
@@ -8,8 +8,12 @@ ENV UV_COMPILE_BYTECODE=1
 # Copy from the cache instead of linking since it's a mounted volume
 ENV UV_LINK_MODE=copy
 
-ENV UV_INDEX_URL=https://mirrors.tencentyun.com/pypi/simple
-
+# ENV UV_INDEX_URL=https://mirrors.tencentyun.com/pypi/simple
+# ENV UV_INDEX_URL=https://pypi.tuna.tsinghua.edu.cn/simple
+ENV UV_INDEX_URL=https://mirrors.aliyun.com/pypi/simple/
+ENV UV_PYTHON_INSTALL_MIRROR=https://gh-proxy.com/github.com/indygreg/python-build-standalone/releases/download
+COPY ./fonts /usr/share/fonts
+RUN fc-cache -f -s
 COPY . /app
 RUN uv lock
 RUN uv sync --locked --no-dev
@@ -32,5 +36,7 @@ ENV PATH="/app/.venv/bin:$PATH"
 # CMD ["ls"]
 EXPOSE 9099
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "9099", "--log-config=log_conf.json", "--log-level", "trace", "--use-colors"]
+# CMD ["python", "main.py"]
+
 
 # CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "9099", "--log-level", "trace", "--use-colors"]
