@@ -42,3 +42,14 @@ class ChuchaiInputModel(BaseModel):
     reason: Optional[str] = Field(default='出差啊', description='出差的目的原因')
     class Config:
         from_attributes = True
+        
+class BaojiaInputModel(BaseModel):
+    """
+    周界安防报价的请求参数对应pydantic模型
+    """
+    totalCamera: Optional[int] = Field(default=0, description='摄像头个数')
+    totalCameraPole: Optional[int] = Field(default=0, description='摄像杆数')
+    totalFCLength: Optional[float] = Field(default=0.0, description='总光缆长度')
+    totalLength: Optional[float] = Field(default=0.0, description='电源线总长度')
+    class Config:
+        from_attributes = True
