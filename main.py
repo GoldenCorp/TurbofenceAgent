@@ -8,4 +8,5 @@ if __name__ == '__main__':
         port=9099,
         # root_path='/giit',
         reload=True,
+        log_level="trace"
     )

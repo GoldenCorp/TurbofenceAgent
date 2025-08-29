@@ -11,6 +11,22 @@
             "request": "launch",
             "program": "main.py",
             "console": "integratedTerminal"
-        }
+        },
+        {
+                "name": "FastAPI: Remote Attach",
+                "type": "python",
+                "request": "attach",
+                "connect": {
+                    "host": "81.70.97.143", // Replace with the IP address of your remote machine/container
+                    "port": 5678
+                },
+                "pathMappings": [
+                    {
+                        "localRoot": "${workspaceFolder}",
+                        "remoteRoot": "/opt/app" // Replace with the absolute path to your app on the remote
+                    }
+                ],
+                "justMyCode": true
+            }
     ]
 }
