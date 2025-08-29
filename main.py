@@ -5,7 +5,7 @@ if __name__ == '__main__':
     uvicorn.run(
         app='app:app',
         host='0.0.0.0',
-        port=9099,
+        port=9098,
         # root_path='/giit',
         reload=True,
         log_level="trace"

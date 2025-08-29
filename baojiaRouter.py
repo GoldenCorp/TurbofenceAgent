@@ -51,13 +51,13 @@ def baojia(chuchaiParam:BaojiaInputModel,token=Depends(token_auth_scheme)):
     #上传文件
     response = client.upload_file(
         Bucket=bucket,
-        Key=pdffilename,  # 对象键（上传后的文件名）
+        Key=xlsfilename,  # 对象键（上传后的文件名）
         LocalFilePath=xlsfilename  # 本地文件路径
     )
     download_url = client.get_presigned_url(
         Method='GET',
         Bucket=bucket,
-        Key=pdffilename,
+        Key=xlsfilename,
         Expired=int(time.time()) + 600  # 10分钟后过期
     )
     return download_url
