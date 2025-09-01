@@ -6,6 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>测量工具</title>
   </head>
+  <!-- <script type="text/javascript">
+    window._TMapSecurityConfig = {
+      serviceHost: "http://81.70.97.143/_TMapService",
+      // 例如 ：serviceHost:'http://127.0.0.1:8080/_TMapService',
+    };
+  </script> -->
   <script src="https://mapapi.qq.com/web/jsapi/jsapi-gl/js/dom-to-image.min.js"></script>
   <script charset="utf-8" src="https://map.qq.com/api/gljs?libraries=tools,service&v=1.exp&key=BETBZ-7QM6J-OMOFF-DT4UM-XWSVV-JXFJG"></script>
   
@@ -25,7 +31,7 @@
     .toolControl {
       width: 100px;
       position: absolute;
-      top: 10px;
+      top: 40px;
       left: 10px;
       z-index: 1001;
     }
@@ -62,18 +68,31 @@
     #panel {
         position: absolute;
         background: #ffffff00;
-        width:350px;
+        height: 48px;
+        width: 350px;
         padding: 8px;
         z-index: 9999;
         top: 30px;
-        left: 300px;
+        left: 54%;
+        transform: translateX(-50%);
+    }
+    #keyword {
+        width: 250px;
+        height: 30px;
+    }
+    #search {
+        width: 50px;
+        height: 40px;
+    }
+    .tmap-zoom-control{
+      margin-top: 40px;
     }
   </style>
 
   <body onload="initMap()">
     <div id="container"></div>
     <div id="panel">
-        <input id='keyword' type="text" value='地铁站' ><input id="search" type="button" class="btn" value="搜索" onclick="searchByKeyword()" />
+        <input id='keyword' type="text" value='地铁站' ><input id="search" type="button" value="搜索" onclick="searchByKeyword()" />
     </div>
     <div class="toolControl">
       <!-- <div onclick="enable(true)" id="enable" class="active">启用</div>
@@ -88,12 +107,15 @@
       var disableButton = document.getElementById('disable'); // 禁用
       var distanceButton = document.getElementById('distance'); // 距离测量
       var areaButton = document.getElementById('area'); // 面积测量
-
+      const params = new URLSearchParams(window.location.search);
+      const query = params.get('nc');
+      console.log(query);
+      document.getElementById('keyword').value=query;
       function initMap() {
         // 初始化地图
         map = new TMap.Map('container', {
-          zoom: 12, // 设置地图缩放级别
-          center: new TMap.LatLng(39.984104, 116.307503),
+          zoom: 17, // 设置地图缩放级别
+          center: new TMap.LatLng(39.068623,117.172464),
           viewMode: '2D',
           renderOptions: {
             // renderOptions文档地址：https://lbs.qq.com/webApi/javascriptGL/glDoc/docIndexMap#10
@@ -108,15 +130,7 @@
           // TMap.tools.MeasureTool文档地址：https://lbs.qq.com/webApi/javascriptGL/glDoc/glDocEditor#5F
           map: map,
         });
-        var line = TMap.MultiPolyline({
-            map: map,
-            style: {
-                color: '#ff0000',
-                width: 2,
-                bordWidth: 6,
-                bordColor: '#ff0000'
-            },
-        })
+
         map.on('tilesloaded', function () {
             // 当地图容器中可见的瓦片加载完后会触发此事件。
             var button = document.querySelector('#export');
@@ -195,15 +209,20 @@
         // infoWindowList.length = 0;
         // markers.setGeometries([]);
         // // 在地图显示范围内以给定的关键字搜索地点
-        var search = new TMap.service.Search({ pageSize: 10 });
+        var search = new TMap.service.Search({ pageSize: 1 });
         var markers = new TMap.MultiMarker({
             map: map,
             geometries: [],
         });
+        
         search
-            .searchRectangle({
-            keyword: document.getElementById('keyword').value,
-            bounds: map.getBounds(),
+            // .searchRectangle({
+            .searchNearby({
+              keyword: document.getElementById('keyword').value,
+              servicesk: "zKmGK6vbaKH6cARXVNuLzlvEH0jecPVk",
+              radius: 1000,
+              center: map.getCenter()
+            // bounds: map.getBounds(),
             })
             .then((result) => {
             result.data.forEach((item, index) => {
