@@ -53,3 +53,13 @@ class BaojiaInputModel(BaseModel):
     totalLength: Optional[float] = Field(default=0.0, description='电源线总长度')
     class Config:
         from_attributes = True
+        
+class BaojiaStrnputModel(BaseModel):
+    """
+    周界安防报价的请求参数对应pydantic模型
+    """
+    totalCamera: Optional[str] = Field(default=0, description='摄像头个数')
+    totalCameraPole: Optional[str] = Field(default=0, description='摄像杆数')
+    totalLength: Optional[str] = Field(default=0.0, description='电源线总长度')
+    class Config:
+        from_attributes = True
