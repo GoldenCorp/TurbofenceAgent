@@ -18,15 +18,13 @@ baojiaRouter = APIRouter(prefix='/baojia')
 @baojiaRouter.post("/baojia", operation_id="baojia", summary="这个工具可以针对周界安防项目，接受计算的报价结果，形成报价方案文件，提供该文件的下载链接提供用户下载使用。")
 def baojia(chuchaiParam:BaojiaStrnputModel,token=Depends(token_auth_scheme)):
     print("0")
-    exTemplatePath = 'baojia3.xlsx'
+    exTemplatePath = 'baojia4.xlsx'
     wb = openpyxl.load_workbook(exTemplatePath)
 
     dateNow = datetime.datetime.now()
     str_dateNow = dateNow.strftime("%Y%m%d")
     orderNum = dateNow.strftime("%Y%m%d%H%M%S")
     sheet = wb.active
-    sheet['F11'] = chuchaiParam.totalCamera
-    sheet['F12'] = chuchaiParam.totalCameraPole
     sheet['F21'] = chuchaiParam.totalLength
     sheet['G3'] = str_dateNow
     sheet['C3'] = orderNum
