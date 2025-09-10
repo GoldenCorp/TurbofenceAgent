@@ -1,7 +1,7 @@
 # TurbofenceAgent
 周界安防设施规划和工程施工设备及材料清单出具、核算Agent，安防工程师助手。
 # 介绍
-本代码库是本案的mcp工具的代买实现，同时使用了腾讯apd（腾讯云智能体开发平台），腾讯地图js sdk，共同作为智能体的实现。
+本代码库是本案的mcp工具的代码实现，同时使用了腾讯ADP（腾讯云智能体开发平台），腾讯地图js sdk，共同作为智能体的实现。
 
 ![arth](./pic/start.png)
 ## 核心框架
@@ -13,7 +13,7 @@
 * uv
 * Uvicorn
 * docker compose
-## 部署
+## 部署成果
 * [这里](http://tencent.giit.cn:9099/mcp)
 
 # 开发过程备忘
