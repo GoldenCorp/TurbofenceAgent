@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh"><head>
+<meta charset="utf-8"/>
+<title>地理AI应用</title>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Inter%3Awght%40400%3B500%3B600%3B700&amp;family=Noto+Sans%3Awght%40400%3B500%3B700&amp;family=Noto+Sans+SC%3Awght%40400%3B500%3B700" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+      :root {
+        --primary-color: #1173d4;
+        --background-color: #0d1117;
+        --secondary-background-color: #161b22;
+        --tertiary-background-color: #21262d;
+        --text-primary: #e6edf3;
+        --text-secondary: #8b949e;
+        --border-color: #30363d;
+      }
+      .range-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 14px;
+        height: 14px;
+        background: var(--primary-color);
+        cursor: pointer;
+        border-radius: 50%;
+        border: 2px solid var(--secondary-background-color);
+      }
+      .range-slider::-moz-range-thumb {
+        width: 14px;
+        height: 14px;
+        background: var(--primary-color);
+        cursor: pointer;
+        border-radius: 50%;
+        border: 2px solid var(--secondary-background-color);
+      }
+    </style>
+</head>
+<body class="bg-[var(--background-color)]" style='font-family: Inter, "Noto Sans SC", "Noto Sans", sans-serif;'>
+<div class="flex h-screen w-full flex-col text-[var(--text-primary)]">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[var(--border-color)] px-6 py-3">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-3 text-white">
+<svg class="size-6" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M12.0799 24L4 19.2479L9.95537 8.75216L18.04 13.4961L18.0446 4H29.9554L29.96 13.4961L38.0446 8.75216L44 19.2479L35.92 24L44 28.7521L38.0446 39.2479L29.96 34.5039L29.9554 44H18.0446L18.04 34.5039L9.95537 39.2479L4 28.7521L12.0799 24Z" fill="#3197f5" fill-rule="evenodd"></path>
+</svg>
+<h1 class="text-xl font-bold">地理AI</h1>
+</div>
+<nav class="flex items-center gap-6">
+<a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors" href="#">地图</a>
+<a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors" href="#">数据</a>
+<a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors" href="#">分析</a>
+<a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors" href="#">分享</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex size-9 items-center justify-center rounded-md bg-[var(--secondary-background-color)] hover:bg-[var(--tertiary-background-color)] transition-colors">
+<span class="material-symbols-outlined text-xl text-[var(--text-secondary)]"> help </span>
+</button>
+<div class="size-9 overflow-hidden rounded-full">
+<img alt="User avatar" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPt8XJFeeLF0P-ZnYuLdYWnollik9GZmY0pLEi9Io31xGJwSuzIfxRZKkNdQkemMBpWT2ifi1Do5msuU-JpcK1ftH49kzv1eKojLo3KoDz8fDmNkVodk0d0ffTqKYvMsOfq7aE79XuEZyYBStjsDpS4uRfnTqs8ltUQZA87FLF4l1Le-PPd1uE7GBuIQvIgRD3Zpw2G8ogTQOzIpq0ROEfchqXg-H_cYAgZ_httWHOVs52Njyr7mYt5XBEoggPuA2xX0sXMfkojnKp"/>
+</div>
+</div>
+</header>
+<main class="flex flex-1 overflow-hidden">
+<div class="flex flex-1 flex-col">
+<div class="relative flex-1 bg-[#001f3f]">
+<img alt="Cesium 3D globe" class="absolute inset-0 h-full w-full object-cover opacity-70" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXD-8z_rXtNUHxl3Rn1W3RtBlD-zB3VbR-53c1JyNTI8ZRENOUeJcSMRsGvXLYOGiuqibSSw5hDaN3OFOywNXH31rfmktQJzxIcoPmGWpJGjm_RlMBReshJYhK7sTipJpYG7jUyvmYrYH5SIWFbop0giuDHU80yKKq7URvDJi0DTb2ilYVBRpAyG0lepvhAD1GprSDZ-91VPZCzQSVtQXGkNoTudrg8mXv24eFZJwEgTf0zwGVewT_ydqN5keAlJmE-XnByGJQ7qFc"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute left-4 top-4 w-96 rounded-lg bg-black/60 text-[var(--text-primary)] backdrop-blur-sm">
+<div class="border-b border-white/20 p-3">
+<label class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-white/60"> search </span>
+<input class="form-input w-full rounded-md border-none bg-white/10 py-2.5 pl-10 pr-4 text-sm text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]" placeholder="搜索位置或数据..." type="search"/>
+</label>
+</div>
+<div class="flex items-center justify-between border-b border-white/20 p-3">
+<h3 class="text-sm font-semibold">图层</h3>
+<button class="text-white/80 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-xl"> add </span>
+</button>
+</div>
+<div class="space-y-1 p-2">
+<div>
+<button class="flex w-full items-center justify-between rounded-md px-2 py-1.5 text-left text-sm font-medium hover:bg-white/10">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xl">map</span>
+<span>基础地图</span>
+</div>
+<span class="material-symbols-outlined text-xl transition-transform">expand_more</span>
+</button>
+<div class="py-1 pl-4">
+<div class="space-y-2 border-l border-white/20 pl-5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<button class="text-white/70 hover:text-white">
+<span class="material-symbols-outlined text-lg">drag_indicator</span>
+</button>
+<label class="flex cursor-pointer items-center gap-2 text-sm">
+<input checked="" class="form-checkbox rounded-sm border-white/40 bg-transparent text-[var(--primary-color)] focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+<span>底图</span>
+</label>
+</div>
+<button class="text-white/70 hover:text-white">
+<span class="material-symbols-outlined text-xl">more_horiz</span>
+</button>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<button class="text-white/70 hover:text-white">
+<span class="material-symbols-outlined text-lg">drag_indicator</span>
+</button>
+<label class="flex cursor-pointer items-center gap-2 text-sm">
+<input checked="" class="form-checkbox rounded-sm border-white/40 bg-transparent text-[var(--primary-color)] focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+<span>道路</span>
+</label>
+</div>
+<button class="text-white/70 hover:text-white">
+<span class="material-symbols-outlined text-xl">more_horiz</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div>
+<button class="flex w-full items-center justify-between rounded-md px-2 py-1.5 text-left text-sm font-medium hover:bg-white/10">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xl">apartment</span>
+<span>人口统计</span>
+</div>
+<span class="material-symbols-outlined text-xl transition-transform">chevron_right</span>
+</button>
+</div>
+<div>
+<button class="flex w-full items-center justify-between rounded-md px-2 py-1.5 text-left text-sm font-medium hover:bg-white/10">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xl">forest</span>
+<span>环境数据</span>
+</div>
+<span class="material-symbols-outlined text-xl transition-transform">expand_more</span>
+</button>
+<div class="py-1 pl-4">
+<div class="space-y-2 border-l border-white/20 pl-5">
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<button class="text-white/70 hover:text-white">
+<span class="material-symbols-outlined text-lg">drag_indicator</span>
+</button>
+<label class="flex cursor-pointer items-center gap-2 text-sm">
+<input checked="" class="form-checkbox rounded-sm border-white/40 bg-transparent text-[var(--primary-color)] focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+<span>公园</span>
+</label>
+</div>
+<button class="text-white/70 hover:text-white">
+<span class="material-symbols-outlined text-xl">more_horiz</span>
+</button>
+</div>
+<div class="space-y-1 pl-10">
+<label class="text-xs text-white/70">不透明度</label>
+<input class="range-slider h-1.5 w-full cursor-pointer appearance-none rounded-lg bg-white/20" max="100" min="0" type="range" value="75"/>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<button class="text-white/70 hover:text-white">
+<span class="material-symbols-outlined text-lg">drag_indicator</span>
+</button>
+<label class="flex cursor-pointer items-center gap-2 text-sm">
+<input class="form-checkbox rounded-sm border-white/40 bg-transparent text-[var(--primary-color)] focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+<span>建筑</span>
+</label>
+</div>
+<button class="text-white/70 hover:text-white">
+<span class="material-symbols-outlined text-xl">more_horiz</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute bottom-4 left-4 flex flex-col gap-2">
+<div class="flex items-center gap-2 rounded-md bg-black/50 p-2 text-white backdrop-blur-sm">
+<span class="material-symbols-outlined text-base"> public </span>
+<span class="text-xs">3D地球</span>
+</div>
+<div class="text-xs text-white/70"> 影像 | 加州旧金山 | 10公里</div>
+</div>
+<div class="absolute right-4 top-4 flex flex-col items-end gap-2">
+<div class="flex flex-col rounded-md bg-black/60 backdrop-blur-sm">
+<button class="flex h-10 w-10 items-center justify-center text-white/80 hover:bg-white/10 hover:text-white transition-colors">
+<span class="material-symbols-outlined"> add </span>
+</button>
+<div class="h-px w-full bg-white/20"></div>
+<button class="flex h-10 w-10 items-center justify-center text-white/80 hover:bg-white/10 hover:text-white transition-colors">
+<span class="material-symbols-outlined"> remove </span>
+</button>
+</div>
+<button class="flex h-10 w-10 items-center justify-center rounded-md bg-black/60 text-white/80 backdrop-blur-sm hover:bg-white/10 hover:text-white transition-colors">
+<span class="material-symbols-outlined"> near_me </span>
+</button>
+</div>
+</div>
+</div>
+<aside class="flex w-[380px] flex-col border-l border-solid border-[var(--border-color)] bg-[var(--secondary-background-color)]">
+<div class="border-b border-solid border-[var(--border-color)] p-4">
+<h2 class="text-lg font-semibold">AI助手</h2>
+</div>
+<div class="flex-1 space-y-6 overflow-y-auto p-4">
+<div class="flex items-start gap-3">
+<div class="size-8 flex-shrink-0 overflow-hidden rounded-full">
+<img alt="AI Agent avatar" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9-ixJFcIhGu4zvq20qmFLhSWI2YHidxCxvmL1ZIA_DVOnl2B59zjxyQxn5ac5AQm9rXWqp7zfaBr-1fmoMbSZxdOoGRjp_s8meU2vur6EgKVnvw6XB7pF9CjQ5IsbqmqgHarm0cWCtldgjIJcGeICX-z_d0h3O7xMbNsibGWdthq2G-79L0Xcq01lLFCi2eyBtfXMxdY3tuujo-4UVDL6F0TRNmtjnSJuf_1Y_J9KpIfRyxsU90-5cTJPKVVSGWqDQTjz-oKXypOg"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<p class="text-xs font-medium text-[var(--text-secondary)]">AI助手</p>
+<div class="rounded-lg rounded-tl-none bg-[var(--tertiary-background-color)] px-3.5 py-2.5 text-sm">今天有什么可以帮您的吗？</div>
+</div>
+</div>
+<div class="flex items-start justify-end gap-3">
+<div class="flex flex-col items-end gap-1.5">
+<p class="text-xs font-medium text-[var(--text-secondary)]">您</p>
+<div class="rounded-lg rounded-br-none bg-[var(--primary-color)] px-3.5 py-2.5 text-sm text-white">给我看看旧金山所有的公园。</div>
+</div>
+<div class="size-8 flex-shrink-0 overflow-hidden rounded-full">
+<img alt="User avatar" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpRNU4q3bP5l-3Yn0-ud2YarNeCJODJTzQuo0icnDv6z-eYpKcHLEdKCTx6s113pC0rfsdi5Qy_g4gtU58OS7n3LxYf55v9mBqr9rp0ubYJaf-fUijrtcDoEenCphwIM4-Ih0WL_3Eg8lYJzqE-iFl2Mk0H4GDSGUYjShndf1OIRESbpfppCoRS951vP_sJoZBSVhS-wFM0rl1xNa2oyOYHuH-6dqt68zmC5rC2yWFgbiuqYiu_HHIOwRgrExncKuNzga-7qZBBEqm"/>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="size-8 flex-shrink-0 overflow-hidden rounded-full">
+<img alt="AI Agent avatar" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9Oof02d8sjSeBxiGsT4BuMMZ6hczdHlAVyXmKza0sHfkjpLJVmMVRDfKrqSfNOQ18Hgrrn5doAkoIqAdLhUgnwfsm25D5b2Are46ax4AUil8USMN3SeXiDoNO9Ya8xeAj5CAXODiudrsL_mS6_xTIhqZkJJXou8xgFRNkogHKigGuouOxnawOJnV-rUQE4vi5FB2R9ua88om5xRw3hN3mC8PlHJCF8IgyTV5E1_ExbyR_odzVDK9nTQVrUUstua9XgOmzbd31QAq"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<p class="text-xs font-medium text-[var(--text-secondary)]">AI助手</p>
+<div class="rounded-lg rounded-tl-none bg-[var(--tertiary-background-color)] px-3.5 py-2.5 text-sm">这是地图上高亮的旧金山公园。</div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 border-t border-solid border-[var(--border-color)] p-4">
+<div class="flex-1">
+<label class="relative">
+<textarea class="form-textarea w-full resize-none rounded-md border-none bg-[var(--tertiary-background-color)] pr-10 text-sm placeholder:text-[var(--text-secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]" placeholder="问我任何问题..." rows="1"></textarea>
+<button class="absolute right-2 top-1/2 -translate-y-1/2 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">
+<span class="material-symbols-outlined text-xl"> image </span>
+</button>
+</label>
+</div>
+<button class="flex size-9 flex-shrink-0 items-center justify-center rounded-md bg-[var(--primary-color)] text-white transition-opacity hover:opacity-90">
+<span class="material-symbols-outlined text-xl"> send </span>
+</button>
+</div>
+</aside>
+</main>
+</div>
+</body></html>
