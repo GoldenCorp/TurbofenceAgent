@@ -25,8 +25,8 @@ async def custom_swagger_ui_html():
         swagger_css_url="/static/swagger-ui.css"
     )
 
-app.include_router(router=userRouter, tags=['用户'])
-app.include_router(router=oaRouter, tags=['oa'])
+# app.include_router(router=userRouter, tags=['用户'])
+# app.include_router(router=oaRouter, tags=['oa'])
 app.include_router(router=baojiaRouter, tags=['报价'])
 mcp = FastApiMCP(app, name="giit", description="测试",
     auth_config=AuthConfig(
