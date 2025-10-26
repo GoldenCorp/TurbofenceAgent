@@ -33,4 +33,5 @@ mcp = FastApiMCP(app, name="giit", description="测试",
         dependencies=[Depends(token_auth_scheme)],
     )
 )
-mcp.mount()
+# mcp.mount()
+mcp.mount_http()
