@@ -15,6 +15,7 @@
 * docker compose
 ## 部署成果
 * [这里](http://tencent.giit.cn:9099/mcp)
+* 重新部署：sudo docker compose up --force-recreate --build -d
 
 # 开发过程备忘
 * 目前腾讯标准智能体无法有效控制流程的启动运行，同时单流程智能体没有提供图片上传入口。为完成本案功能，只能选择多智能体模式，但是多智能体模式精确度有限，导致本案功能不尽稳定, 略感遗憾！
